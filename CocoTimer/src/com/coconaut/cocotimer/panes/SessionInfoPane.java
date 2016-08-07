@@ -58,9 +58,9 @@ public class SessionInfoPane extends JFrame {
 		lblSadistics.setBounds(28, 11, 123, 23);
 		contentPane.add(lblSadistics);
 		
-		JLabel lblNumberOfSolutions = new JLabel("Solutions:");
+		JLabel lblNumberOfSolutions = new JLabel("Solves:");
 		lblNumberOfSolutions.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		lblNumberOfSolutions.setBounds(473, 16, 89, 18);
+		lblNumberOfSolutions.setBounds(497, 16, 89, 18);
 		contentPane.add(lblNumberOfSolutions);
 
 		JLabel lblNewLabel = new JLabel(StatsManager.getLength() + "");

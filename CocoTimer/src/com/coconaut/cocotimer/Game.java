@@ -33,7 +33,7 @@ import com.coconaut.cocotimer.util.TimeUtil;
 public class Game extends Canvas implements Runnable, ComponentListener {
 	//TODO Make actual ao's text on click show pop up with more ao's info
 	
-	public static final String VERSION = "0.3.1";
+	public static final String VERSION = "0.3.2";
 	public static int WIDTH = 800, HEIGHT = 600;
 	private static int minW = (int) (WIDTH/1.1), minH = (int) (HEIGHT/1.5);
 	
@@ -182,10 +182,6 @@ public class Game extends Canvas implements Runnable, ComponentListener {
         System.exit(1);
 	}
 	
-	public void deleteLastSolve() {
-		StatsManager.deleteLastOne();
-	}
-	
 	public void startTime() {
 		min = 0;
 		sec = 0;
@@ -236,7 +232,7 @@ public class Game extends Canvas implements Runnable, ComponentListener {
 				frame.setSize(WIDTH, HEIGHT);
 				frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 				
-				Image icon = Toolkit.getDefaultToolkit().getImage("res/icon.png");	
+				Image icon = Toolkit.getDefaultToolkit().getImage("res/icon16x16.png");
 				
 				frame.setLocationRelativeTo(null);
 				frame.setResizable(true);

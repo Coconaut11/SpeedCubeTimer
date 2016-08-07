@@ -35,7 +35,9 @@ public class StatsManager {
 
 	public static void deleteLastOne() {
 		if(getLength() < 1) return; 
-		times.remove(times.size() - 1);
+		times.removeLast();
+		if(getLength() < 5)ao5.removeLast();
+		if(getLength() < 12)ao12.removeLast();
 		StatsManager.updateStats();
 	}
 	

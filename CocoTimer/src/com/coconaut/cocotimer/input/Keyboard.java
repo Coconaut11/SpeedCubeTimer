@@ -51,7 +51,7 @@ public class Keyboard implements KeyListener {
 			}
 
 			if(arg0.getKeyCode() == KeyEvent.VK_Q) {
-				game.deleteLastSolve();
+				StatsManager.deleteLastOne();
 			}
 			
 			if(arg0.getKeyCode() == KeyEvent.VK_I) {

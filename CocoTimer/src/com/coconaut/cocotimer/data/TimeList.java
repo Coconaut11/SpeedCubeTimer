@@ -61,13 +61,29 @@ public class TimeList {
 	public void initSession(String filepath) {
 		this.filePath = filepath;
 		String file = FileUtil.readFile(filepath);
-		if(file == null) return; 
-		String[] times = file.split(",");
+		if(file == null) return;
+		
+		String[] text = file.split("-");
+		
+		String[] times = text[0].split(",");
+		String[] ao5s = text[1].split(",");
+		String[] ao12s = text[2].split(",");
+		
 		for(String t : times) {
 			String[] time = t.split("\\.");	
 			int ticks = Integer.parseInt(time[0]);
 			String scramble = time[1];
 			StatsManager.times.add(new Time(ticks, scramble));
+		}
+		
+		for(String s : ao5s) {
+			int ticks = Integer.parseInt(s);
+			StatsManager.ao5.add(new Time(ticks));
+		}
+		
+		for(String s : ao12s) {
+			int ticks = Integer.parseInt(s);
+			StatsManager.ao12.add(new Time(ticks));
 		}
 	}
 	
@@ -80,6 +96,18 @@ public class TimeList {
 			text += time.getTicks() + "." + time.getScramble() + ",";
 		}
 		
+		text += "-";
+		
+		for(Time time : StatsManager.ao5) {
+			text += time.getTicks() + ",";
+		}
+		
+		text += "-";
+		
+		for(Time time : StatsManager.ao12) {
+			text += time.getTicks() + ",";
+		}
+
 		FileUtil.writeFile(text, path);
 	}
 	
