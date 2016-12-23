@@ -32,7 +32,7 @@ import com.coconaut.cocotimer.util.TimeUtil;
 
 public class Game extends Canvas implements Runnable, ComponentListener {
 	//TODO Make actual ao's text on click show pop up with more ao's info
-	
+	//pene
 	public static final String VERSION = "0.3.2";
 	public static int WIDTH = 800, HEIGHT = 600;
 	private static int minW = (int) (WIDTH/1.1), minH = (int) (HEIGHT/1.5);
@@ -133,6 +133,8 @@ public class Game extends Canvas implements Runnable, ComponentListener {
 				kb.delay = 30;
 			}
 		}
+		
+		timelist.tick();
 	}
 	
 	public void render() {
@@ -151,10 +153,13 @@ public class Game extends Canvas implements Runnable, ComponentListener {
 		min = TimeUtil.intToTime(time)[1];
 		mil = TimeUtil.intToTime(time)[2];
 	
-		int timeX = 215, timeY = 213, timeW = 473, timeH = 89;
+		int timeW = 473, timeH = 89;
+		int timeX = WIDTH/2 - timeW/2 + 46 + ((StatsManager.getLength() < 100 ? 0 : 7)), timeY = 213;
+		int xless = !timelist.isEenabled() ? -(StatsManager.getLength() < 100 ? 125 : 133) : 0;
+		
 		g.setColor(timecolor);
 		g.setFont(new Font("Arial", Font.BOLD, 120));
-		g.drawString(TimeUtil.bulidTimeString(min, sec, mil), WIDTH/2 - timeW/2 + 46 + ((StatsManager.getLength() < 100 ? 0 : 7)), HEIGHT/2 - timeH/2);
+		g.drawString(TimeUtil.bulidTimeString(min, sec, mil), timeX + xless, HEIGHT/2 - timeH/2);
 
 		if(ConfigPane.scramble) {
 			g.setColor(Color.black);
@@ -162,11 +167,13 @@ public class Game extends Canvas implements Runnable, ComponentListener {
 			g.drawString(scramble, (StatsManager.getLength() < 100 ? 125 : 133) + 10, 20);		
 		}
 		
+		int yy = Game.HEIGHT - 80;
+		
 		g.setColor(infocolor);
 		g.setFont(new Font("Arial", Font.PLAIN, 40));					
-		g.drawString("+", Game.WIDTH - 47, Game.HEIGHT - 45);
+		g.drawString("+", Game.WIDTH - 47, yy + 30);
 		
-		g.drawImage(config_btn, WIDTH - 90, HEIGHT - 76, 32, 32, null);
+		g.drawImage(config_btn, WIDTH - 90, yy, 32, 32, null);
 		
 		timelist.render(g);
 		

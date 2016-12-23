@@ -61,6 +61,10 @@ public class Keyboard implements KeyListener {
 			if(arg0.getKeyCode() == KeyEvent.VK_A) {
 				StatsManager.removeAll();
 			}
+
+			if(arg0.getKeyCode() == arg0.VK_L) {
+				game.getTimeList()._switch();
+			}
 		}
 				
 		if(game.timeing && !cond && !game.delay) {
@@ -77,7 +81,7 @@ public class Keyboard implements KeyListener {
 				game.setTimeColor(Color.black);				
 			}
 			
-			cond = false;
+		cond = false;
 	}
 
 	public void keyTyped(KeyEvent arg0) {

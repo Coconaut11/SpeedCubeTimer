@@ -3,6 +3,7 @@ package com.coconaut.cocotimer.input;
 import java.awt.Color;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.awt.event.MouseMotionListener;
 import java.awt.event.MouseWheelEvent;
 import java.awt.event.MouseWheelListener;
 
@@ -11,7 +12,7 @@ import com.coconaut.cocotimer.data.TimeList;
 import com.coconaut.cocotimer.panes.ConfigPane;
 import com.coconaut.cocotimer.panes.SessionInfoPane;
 
-public class Mouse implements MouseWheelListener, MouseListener {
+public class Mouse implements MouseWheelListener, MouseListener, MouseMotionListener {
 	
 	private TimeList timelist;
 	private Game game;
@@ -35,12 +36,14 @@ public class Mouse implements MouseWheelListener, MouseListener {
 	public void mousePressed(MouseEvent e) {
 		int mx = e.getX();
 		int my = e.getY();
+
+		int yy = Game.HEIGHT - 80;
 		
-		if(isPointInside(mx, my, Game.WIDTH - 40, 540, 25, 25)) {
+		if(isPointInside(mx, my, Game.WIDTH - 47, yy, 32, 32)) {
 			game.setInfoBtnColor(Color.gray);	
 		}		
 
-		if(isPointInside(mx, my, Game.WIDTH - 91, Game.HEIGHT - 77, 32, 32)) {
+		if(isPointInside(mx, my, Game.WIDTH - 90, yy, 32, 32)) {
 			game.setConfigBtn(true);
 		}		
 	}
@@ -49,15 +52,27 @@ public class Mouse implements MouseWheelListener, MouseListener {
 		int mx = e.getX();
 		int my = e.getY();
 		
-		if(isPointInside(mx, my, Game.WIDTH - 40, 540, 25, 25)) {
+		int yy = Game.HEIGHT - 80;
+
+		if(isPointInside(mx, my, Game.WIDTH - 47, yy, 32, 32)) {
 			game.setInfoBtnColor(Color.black);	
 			new SessionInfoPane();
 		}
 
-		if(isPointInside(mx, my, Game.WIDTH - 91, Game.HEIGHT - 77, 32, 32)) {
+		if(isPointInside(mx, my, Game.WIDTH - 90, yy, 32, 32)) {
 			game.setConfigBtn(false);
 			new ConfigPane();
 		}		
+	}
+
+	public void mouseDragged(MouseEvent arg0) {
+	}
+
+	public void mouseMoved(MouseEvent arg0) {
+		int mx = arg0.getX();
+		int my = arg0.getY();
+		
+		timelist.onMouseMoved(mx, my);
 	}
 	
 	public void mouseWheelMoved(MouseWheelEvent arg0) {
